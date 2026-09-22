@@ -1,37 +1,62 @@
 function updateView(){
     let html = /*HTML*/`
     
-    <h2>Enkel Kontaktbok</h2>
-    
+        <h2>Enkel Kontaktbok</h2>
+
+        <table>
+            <tr>
+                <th>Navn</th>
+                <th>Telefonnummer</th>        
+            </tr>
+        
     `;
 
-    for (let i = 0; i < contactList.length; i++)
-        html += /*HTML*/ `
-            <ul>
-                <p>Navn: ${contactList[i].name}</p>
-                <p>Tlf.: ${contactList[i].phone}</p>
-            </ul>
-        `;
+    for(let i = 0; i < contactList.length; i++){
+        html += createRow(i);
+    }
+    
+    
+    html += /*HTML*/`
+        </table>
+        <button onclick="addUser()">Legg til bruker</button>
 
-        html += /*HTML*/`
-            <button onclick="createUser()">Opprette bruker</button>
-        `;
+    `;
+    
     model.app.innerHTML = html;
 }
 
+function createRow(i){
+    
+        return /*HTML*/ `
+            <tr>
+                <td>${contactList[i].name}</td>
+                <td>${contactList[i].phone}</td>
 
-function createUser() {
+                <td>
+                    <button onclick="deleteUser(${i})">Slett</button>
+                    <button onclick="editUser()">Rediger</button>
+                </td>
+            </tr>
+        `;
+
+}
+
+function addUser() {
 
 
-    let html = /*HTML*/`
+    let html = ``;
+    
+    html += /*HTML*/`
 
         <div>
-            <p><input onchange="nameInput = this.value"></p>
-            <p><input onchange="phoneInput = Number(this.value)"></p>
+            <p><input onchange="nameInput = this.value" placeholder="Navn"></p>
+            <p><input onchange="phoneInput = Number(this.value)" placeholder="Telefon"></p>
+            
+            <button onclick="createUser()">Opprette bruker</button>
         </div>
     `;
 
-    return html;
+    model.app.innerHTML += html;
 }
 
 updateView();
