@@ -6,6 +6,11 @@ function updateView() {
     
         <h2>Enkel Kontaktbok</h2>
 
+        <input oninput="searchInput = this.value">
+        <button onclick="searchUser()">Søk</button>
+        <br>
+        <br>
+
         <table>
             <tr>
                 <th>Navn</th>
@@ -22,11 +27,12 @@ function updateView() {
     if(model.data.addMode){
         html += /*HTML*/`
             <tr>
-                <td><input onchange="model.data.nameInput = this.value" placeholder="Navn"></td>
-                <td><input onchange="model.data.phoneInput = Number(this.value)" placeholder="Telefon"></td>
+                <td><input oninput="model.data.nameInput = this.value" placeholder="Navn"></td>
+                <td><input oninput="model.data.phoneInput = Number(this.value)" placeholder="Telefon"></td>
                 
                 <td>
                     <button onclick="createUser()">Opprette bruker</button>
+                    <button onclick="cancelAddUser()">Angre</button>
                 </td>
             </tr>
         `;
@@ -41,10 +47,11 @@ function updateView() {
                     <button onclick="addUser()">Legg til bruker</button>
                 </th>
             </tr>
-            
-            </table>
         `;
     }
+        html += /*HTML*/ `</table>`;
+        //Lukker tabellen!
+
     model.app.innerHTML = html;
 }
 
@@ -90,18 +97,29 @@ function editContacts(i) {
 
                 <td>
                     <button onclick="saveUser(${i})">Lagre</button>
+                    <button onclick="cancelEditUser(${i})">Angre</button>
                 </td>
             </tr>
         `;
     return '';
 }
 
-// VISES NÅR MAN TRYKKER PÅ "LEGG TIL BRUKER"
-function addUser() {
 
-    model.data.addMode = true;
-        //Her aktiverer vi addMode for at feltene skal synes
-    updateView();
+// SØKEFELT
+function searchUser(){
+
+    let nameInLowerCase = contactList[i].name.toLowerCase();    //navnene i contactList.name blir omgjort til småbokstaver
+    let searchInLowerCase = searchInput.toLowerCase();          //det du skriver i søkefeltet blir omgjort til småbokstaver
+
+    for(let i = 0; i < contactList.length; i++){
+        if(nameInLowerCase.includes(searchInLowerCase)){
+            html += generateContacts(i);
+
+        }
+    }
+    model.app.innerHTML += html;        //+= fordi jeg ønsker at tabellen erstattes
+    
 }
+
 
 updateView();

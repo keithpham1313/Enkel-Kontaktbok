@@ -1,3 +1,11 @@
+// VISES NÅR MAN TRYKKER PÅ "LEGG TIL BRUKER"
+function addUser() {
+
+    model.data.addMode = true;
+        //Her aktiverer vi addMode for at feltene skal synes
+    updateView();
+}
+
 // OPPRETTE BRUKER
 function createUser(){
 
@@ -35,4 +43,23 @@ function saveUser(index){
     updateView();
 }
 
-// SØKEFELT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// ANGRE-KNAPP FOR ADDUSER()
+function cancelAddUser(){
+
+    model.data.addMode = false;
+
+    updateView();
+}
+
+// ANGRE-KNAPP FOR REDIGER-MODUS
+function cancelEditUser(index){
+
+    model.data.contactList[index].editMode = false;
+
+    updateView()
+}
+
+
+
+
+
