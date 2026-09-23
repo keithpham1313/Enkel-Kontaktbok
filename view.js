@@ -1,3 +1,4 @@
+// VISER INNHOLDET
 function updateView(){
     let html = /*HTML*/`
     
@@ -12,21 +13,25 @@ function updateView(){
     `;
 
     for(let i = 0; i < contactList.length; i++){
-        html += createRow(i);
+        html += generateContacts(i);
+        html += editContacts(i);
     }
     
     
     html += /*HTML*/`
+        <tr>
+            <button onclick="addUser()">Legg til bruker</button>
+        </tr>
+        
         </table>
-        <button onclick="addUser()">Legg til bruker</button>
-
     `;
     
     model.app.innerHTML = html;
 }
 
-function createRow(i){
-    
+// HENTER FREM DE EKSISTERENDE KONTAKTENE
+function generateContacts(i){
+    if(!contactList[i].editMode)
         return /*HTML*/ `
             <tr>
                 <td>${contactList[i].name}</td>
@@ -34,15 +39,42 @@ function createRow(i){
 
                 <td>
                     <button onclick="deleteUser(${i})">Slett</button>
-                    <button onclick="editUser()">Rediger</button>
+                    <button onclick="editUser(${i})">Rediger</button>
                 </td>
             </tr>
         `;
-
 }
 
-function addUser() {
+// VISER FREM EDIT MODE NÅR REDIGER-KNAPPEN TRYKKES
+function editContacts(i){
+    if(contactList[i].editMode)
+        return /*HTML*/ `
+            <tr>
+                <td>
+                    <input 
+                        onchange="contactList[${i}].name = this.value"
+                        value="${contactList[i].name}" 
+                        type="text"
+                    >
+                </td>
+                
+                <td>
+                    <input 
+                        onchange="contactList[${i}].phone = Number(this.value)"
+                        value="${contactList[i].phone}" 
+                        type="number"
+                    >
+                </td>
 
+                <td>
+                    <button onclick="saveUser(${i})">Lagre</button>
+                </td>
+            </tr>
+        `;
+}
+
+// VISES NÅR MAN TRYKKER PÅ "LEGG TIL BRUKER"
+function addUser() {
 
     let html = ``;
     

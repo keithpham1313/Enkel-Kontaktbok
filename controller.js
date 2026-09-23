@@ -1,3 +1,4 @@
+// OPPRETTE BRUKER
 function createUser(){
 
     contactList.push(
@@ -10,12 +11,23 @@ function createUser(){
     updateView();
 }
 
+// SLETT BRUKER
 function deleteUser(index){
     contactList.splice(index, 1);
 
     updateView();
 }
 
-function editUser(){
+// REDIGER BRUKER
+function editUser(index){
+    contactList[index].editMode = true;
 
+    updateView();
+}
+
+// LAGRE BRUKER
+function saveUser(index){
+    contactList[index].editMode = false;
+
+    updateView();
 }
