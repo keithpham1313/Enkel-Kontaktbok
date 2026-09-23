@@ -1,33 +1,38 @@
 // OPPRETTE BRUKER
 function createUser(){
 
-    contactList.push(
+    model.data.contactList.push(
         {
-        name: nameInput,
-        phone: phoneInput,
+        name: model.data.nameInput,
+        phone: model.data.phoneInput,
         }
     );
-    
+
+    model.data.addMode = false;
+        //Setter addMode tilbake til false-state for å skjule input-feltene   
     updateView();
 }
 
+
 // SLETT BRUKER
 function deleteUser(index){
-    contactList.splice(index, 1);
+    model.data.contactList.splice(index, 1);
 
     updateView();
 }
 
 // REDIGER BRUKER
 function editUser(index){
-    contactList[index].editMode = true;
+    model.data.contactList[index].editMode = true;
 
     updateView();
 }
 
 // LAGRE BRUKER
 function saveUser(index){
-    contactList[index].editMode = false;
+    model.data.contactList[index].editMode = false;
 
     updateView();
 }
+
+// SØKEFELT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
