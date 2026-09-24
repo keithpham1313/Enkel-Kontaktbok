@@ -1,0 +1,11 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "My Notes",
+  "steps": [
+    {
+      "file": "view.js",
+      "description": "Hvis navnet på denne kontakten inneholder det brukeren søker etter, legg kontakten inn i HTML-en.\r\n\r\n        if(name.includes(search)){\r\n            html += generateContacts(i);\r\n            html += editContacts(i);\r\n        }",
+      "line": 31
+    }
+  ]
+}
