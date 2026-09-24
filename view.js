@@ -25,15 +25,18 @@ function updateView() {
     `;
 
     for (let i = 0; i < contactList.length; i++) {
-
+        // 
         let name = contactList[i].name.toLocaleLowerCase();
-
+        // 
         if(name.includes(search)){
             html += generateContacts(i);
             html += editContacts(i);
         }
+📌  Search Function 📝 🗑️
+
     }
-        //addMode viser ikke denne før du trykker på "Legg til bruker", da kjører addUser() og gjør addMode til true.
+    
+    //addMode viser ikke denne før du trykker på "Legg til bruker", da kjører addUser() og gjør addMode til true.
     if(model.data.addMode){
         html += /*HTML*/`
             <tr>
