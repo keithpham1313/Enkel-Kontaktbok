@@ -138,6 +138,5 @@ const model = {
         nameInput: '',
         phoneInput: '',
         addMode: false,
-            //Brukes kun til å vise og skjule editMode
     },
 };

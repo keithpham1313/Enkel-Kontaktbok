@@ -2,7 +2,7 @@
 function addUser() {
 
     model.data.addMode = true;
-        //Her aktiverer vi addMode for at feltene skal synes
+        
     updateView();
 }
 
@@ -17,7 +17,7 @@ function createUser(){
     );
 
     model.data.addMode = false;
-        //Setter addMode tilbake til false-state for å skjule input-feltene   
+        
     updateView();
 }
 

@@ -34,7 +34,7 @@ function updateView() {
         }
     }
 
-    //addMode viser ikke denne før du trykker på "Legg til bruker", da kjører addUser() og gjør addMode til true.
+    //
     if(model.data.addMode){
         html += /*HTML*/`
             <tr>
@@ -48,7 +48,6 @@ function updateView() {
             </tr>
         `;
     }
-        //addMode vil vise dette siden den er satt til false i modellen
     else{
         html += /*HTML*/`
             <tr>
@@ -61,7 +60,6 @@ function updateView() {
         `;
     }
         html += /*HTML*/ `</table>`;
-        //Lukker tabellen!
 
     model.app.innerHTML = html;
 }
@@ -81,7 +79,7 @@ function generateContacts(i) {
                 </td>
             </tr>
         `;
-    return '';      //Måtte ha denne mot slutten for at det ikke skal vises 3x "undefined"
+    return '';
 }
 
 // VISER EDIT MODE NÅR REDIGER-KNAPPEN TRYKKES

@@ -4,8 +4,53 @@
   "steps": [
     {
       "file": "view.js",
-      "description": "Hvis navnet på denne kontakten inneholder det brukeren søker etter, legg kontakten inn i HTML-en.\r\n\r\n        if(name.includes(search)){\r\n            html += generateContacts(i);\r\n            html += editContacts(i);\r\n        }",
-      "line": 31
+      "description": "> Hvis navnet på denne kontakten inneholder det brukeren søker etter, legg kontakten inn i HTML-en.\r\n\r\n    if(name.includes(search)){\r\n        html += generateContacts(i);\r\n        html += editContacts(i);\r\n    }\r\n\r\ngenerateContacts(i)\r\n    Viser kontakten normalt.\r\n    \r\neditContacts(i)\r\n    Viser kontakten som redigeringsfelt hvis den er i edit mode.\r\n\r\n\r\n> Eksempel:\r\n\r\n1) Listen er:\r\n\r\n    Ole\r\n    Mikke Mus\r\n    Minni Mus\r\n    Donald Duck\r\n\r\n2) Brukeren søker på \"mi\" i søkefeltet. Da får vi:\r\n\r\n```javascript\r\n    \"ole\".includes(\"mi\")          // false\r\n    \"mikke mus\".includes(\"mi\")    // true\r\n    \"minni mus\".includes(\"mi\")    // true\r\n    \"donald duck\".includes(\"mi\")  // false\r\n```\r\n\r\n3) Vi får dermed bare disse to resultatene:\r\n\r\n    Mikke Mus\r\n    Minni Mus\r\n\r\n4) Resultatene blir sendt videre til disse funksjonene og lagt inn i html:\r\n\r\n    generateContacts(i)\r\n    editContacts(i)\r\n\r\n\r\n> Hvis man ikke søker på noe som helst hvordan klarer den å vise den opprinnelige kontaktlisten som den henter fra modellen?\r\n\r\n    if(name.includes(search))\r\n\r\n1) Når vi ikke skriver inn noe i søkefeltet blir:\r\n\r\n    model.data.searchInput = '' (tom string)\r\n\r\n2) I modellen er:\r\n    \r\n    searchInput = '';\r\n\r\n3) Vi har deklarert at:\r\n\r\n    let search = model.data.searchInput.toLowerCase();\r\n\r\n4) Da blir:\r\n\r\n    let search = ''.toLowerCase();\r\n\r\n5) I included() blir det lest slik:\r\n\r\n    'ole'.includes('')  //true\r\n\r\nDet betyr:\r\n\r\n    \"OLE\"\r\n    ↓\r\n    \"\"  ← ingenting å lete etter\r\n\r\nDet samme gjelder:\r\n\r\n    \"mikke mus\".includes('')    // true\r\n\r\n    \"donald duck\".includes('')  // true\r\n\r\n    \"pluto\".includes('')        // true\r\n\r\n\r\n",
+      "line": 34
+    },
+    {
+      "file": "view.js",
+      "description": "Det du skriver i søkefeltet blir omgjort til småbokstaver",
+      "line": 29
+    },
+    {
+      "file": "view.js",
+      "description": "Navnene i model.data.contactList.name blir omgjort til småbokstaver",
+      "line": 4
+    },
+    {
+      "file": "controller.js",
+      "description": "Setter addMode tilbake til false-state for å skjule input-feltene   ",
+      "line": 19
+    },
+    {
+      "file": "controller.js",
+      "description": "Her aktiverer vi addMode for at feltene skal vises, slik at brukeren kan legge til kontakter i listen",
+      "line": 4
+    },
+    {
+      "file": "view.js",
+      "description": "Husk at i modellen er addMode = false\r\n\r\naddMode vil derfor vise dette siden den er satt til false i modellen",
+      "line": 51
+    },
+    {
+      "file": "view.js",
+      "description": "Denne er her kun for å lukke tabellen!",
+      "line": 62
+    },
+    {
+      "file": "view.js",
+      "description": "addMode = false\r\n\r\naddMode viser ikke denne før du trykker på \"Legg til bruker\", da kjører addUser() og gjør addMode til true.",
+      "line": 38
+    },
+    {
+      "file": "view.js",
+      "description": "Måtte ha denne mot slutten for at det ikke skal vises 3x \"undefined\"",
+      "line": 82
+    },
+    {
+      "file": "model.js",
+      "description": "Variabelen brukes kun til å vise og skjule editMode",
+      "line": 140
     }
   ]
 }
