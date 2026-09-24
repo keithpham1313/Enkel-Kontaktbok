@@ -1,17 +1,12 @@
 // VISER INNHOLDET
 function updateView() {
     let contactList = model.data.contactList;
-    let search = model.data.searchInput.toLowerCase();
 
     let html = /*HTML*/`
     
         <h2>Enkel Kontaktbok</h2>
 
-        <input 
-            onchange="model.data.searchInput = this.value; updateView()"
-            placeholder="Søk i kontaktliste"
-        >
-        
+        <input oninput="mode.data.searchInput = this.value">
         <button onclick="searchUser()">Søk</button>
         <br>
         <br>
@@ -25,13 +20,8 @@ function updateView() {
     `;
 
     for (let i = 0; i < contactList.length; i++) {
-
-        let name = contactList[i].name.toLocaleLowerCase();
-
-        if(name.includes(search)){
-            html += generateContacts(i);
-            html += editContacts(i);
-        }
+        html += generateContacts(i);
+        html += editContacts(i);
     }
         //addMode viser ikke denne før du trykker på "Legg til bruker", da kjører addUser() og gjør addMode til true.
     if(model.data.addMode){
@@ -118,7 +108,20 @@ function editContacts(i) {
 // SØKEFELT
 function searchUser(){
 
-    updateView();    
+    let searchInLowerCase = model.data.searchInput.toLowerCase();          //det du skriver i søkefeltet blir omgjort til småbokstaver
+    let html = ``;
+
+    for(let i = 0; i < model.data.contactList.length; i++){
+        
+        let nameInLowerCase = model.data.contactList[i].name.toLowerCase();    //navnene i contactList.name blir omgjort til småbokstaver
+
+        if(nameInLowerCase.includes(searchInLowerCase)){
+            html += generateContacts(i);
+
+        }
+    }
+    model.app.innerHTML = html;        //+= fordi jeg ønsker at tabellen erstattes
+    
 }
 
 
