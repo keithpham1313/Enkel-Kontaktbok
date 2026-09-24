@@ -32,10 +32,8 @@ function updateView() {
             html += generateContacts(i);
             html += editContacts(i);
         }
-📌  Search Function 📝 🗑️
-
     }
-    
+
     //addMode viser ikke denne før du trykker på "Legg til bruker", da kjører addUser() og gjør addMode til true.
     if(model.data.addMode){
         html += /*HTML*/`
